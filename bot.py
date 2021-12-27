@@ -9,7 +9,7 @@ import os
 
 prefix = '-'
 client = commands.Bot(command_prefix = prefix, help_command=None)
-os.chdir(r'C:\Users\Asus\Desktop\Дискорд Бот')
+'''os.chdir(r'C:\Users\Asus\Desktop\Дискорд Бот')'''
 statuses = cycle(['-help - список комманд.', 'JunFun Bot сделан Janone2404', 'На языке Python', 'Специально для JunFun'])
 token = 'ODg4NDc4MzIxNjU3MTM5MjIw.YUTR6w.PuOnMe2BZGnFvTek2aJPA7IkNH8'
 
