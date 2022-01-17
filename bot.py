@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #подключение библиотек, модулей и функций
 import discord
 from discord import role
@@ -22,8 +23,8 @@ client = commands.Bot(command_prefix = prefix_start, help_command=None, intents 
 
 moderation = [880424360400269394, 891413249801748510, 888356594251890708, 895782543553605662, 856608768090439710]
 
-english_commands = ['8ball', 'ping', 'prefix', 'info', 'clear', 'kick', 'ban', 'unban', 'new_year_congrats', 'random', 'help', 'mute']
-russian_comands = ['пинг', 'префикс', 'инфо', 'чистка', 'кик', 'бан', 'разбан', 'пнг', 'рандом', 'хелп', 'мут']
+english_commands = ['8ball', 'ping', 'prefix', 'info', 'clear', 'kick', 'ban', 'unban', 'new_year_congrats', 'random', 'help', 'mute', 'user']
+russian_comands = ['пинг', 'префикс', 'инфо', 'чистка', 'кик', 'бан', 'разбан', 'пнг', 'рандом', 'хелп', 'мут', 'юзер']
 other_commands = ['pref', 'преф', 'ранд', 'rand', 'bot-info', 'бот-инфо', 'мьют', 'скрыть']
 
 prefix_count = 1
@@ -35,31 +36,29 @@ async def on_ready():
     channel_mute = client.get_channel(888561763182845962)
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.streaming, name='-help, -info', url='https://www.twitch.tv/janone02'))
     print('Bot successfully started.')
-
-'''@client.event
+'''
+@client.event
 async def on_member_join(member):
     with open('users.json', 'r') as file:
         users = json.load(file)
-        
     await update_data(users, member)
-
     with open('users.json', 'w') as file:
-        json.dump(users, file)
+        json.dump(users, file, indent=0)
 
 @client.event
 async def on_message(message):
-    with open('users.json', 'r') as file:
-        users = json.load(file)
-    
-    await update_data(users, message.author)
-    await add_experience(users, message.author, 5)
-    await level_up(users, message.author, message.channel)
-
-    with open('users.json', 'w') as file:
-        json.dump(users, file)
+    if message.author.bot == False:
+        with open('users.json', 'r') as file:
+            users = json.load(file)
+        await update_data(users, message.author)
+        await add_experience(users, message.author, 5)
+        await level_up(users, message.author, message)
+        with open('users.json', 'w') as file:
+            json.dump(users, file, indent=4)
+    await client.process_commands(message)
 
 async def update_data(users, user):
-    if not user.id in users:
+    if user.id in users.keys() == False:
         users[user.id] = {}
         users[user.id]['experience'] = 0
         users[user.id]['level'] = 0
@@ -67,25 +66,23 @@ async def update_data(users, user):
 async def add_experience(users, user, amount):
     users[user.id]['experience'] += amount
 
-async def level_up(users, user, channel):
+async def level_up(users, user, message):
+    with open('levels.json', 'r') as g:
+        levels = json.load(g)
     experience = users[user.id]['experience']
     lvl1 = users[user.id]['level']
     lvl2 = int(experience ** (1/4))
-
     if lvl1 < lvl2:
-        await client.send_message(channel, '{}, ты толко что **достиг уровня {}!!!**\n***Спасибо за твою активность на JuFun🎊!!!***'.format(user.mention, lvl2))
-        users[user.id]['level'] = lvl2'''
-
+        await message.channel.send(f'{user.mention}, ты толко что **достиг уровня {lvl2}!!!**\n***Спасибо за твою активность на JuFun🎊!!!***')
+        users[user.id]['level'] = lvl2
+'''
 @client.command(aliases=['help', 'хелп'])
 async def help_(ctx, command=None):
+    embed_help_ex = None
     profile_picture = ctx.message.author.avatar_url
-    if ctx.channel.id != 904785230043443251 or ctx.channel.id != 903369992211402782 or ctx.channel.id != 921835585981784104:
-        embed_help = discord.Embed(title='Команда help\nОшибка', description='Команда содержит слишком много текста, вы можете отправить её только в канале <#921835585981784104>, <#904785230043443251> или <#903369992211402782>!', colour=0xff0000)
-        embed_help.set_footer(text='Запросил ' + str(ctx.message.author), icon_url=profile_picture)
-        await ctx.send(embed=embed_help)
-        return
     if command != None:
         if str(command) in english_commands or str(command) in russian_comands or str(command) in other_commands:
+            title_field = None
             if command == 'help' or command == 'хелп':
                 name_help = 'help'
                 inf = 'хелп.'
@@ -93,24 +90,30 @@ async def help_(ctx, command=None):
                 req_args = 'Нет обязательных аргументов'
                 args_info = '<команда> - любая команда из списка команд'
                 do = 'Нет аргументов - печатает список всех команд и их краткое описание.\nЕсть аргумент <команда> - печатает полную информацию о конкретной команде.'
-                ex_res = 'https://i.ibb.co/wL9N3j3/2021-12-31-201034.png'
-            if command == 'info' or command == 'bot-info' or command == 'инфо' or command == 'бот-инфо':
+                title_field = 'Информация о команде help\nОбщие команды'
+                description_field = '```1. help (хелп) <команда> - список команд сервера или подробная информация об 1 команде.\n2. info (инфо, bot-info, bot_info) - узнать о боте.```\n```...```'
+            elif command == 'info' or command == 'bot-info' or command == 'инфо' or command == 'бот-инфо':
                 name_help = 'info'
                 inf = 'bot-info, инфо, бот-инфо.'
                 args = 'Нет аргументов'
                 req_args = 'Нет обязательных аргументов'
                 args_info = 'Нет информации об аргументах'
                 do = 'Печатает информацию о <@888478321657139220>'
-                ex_res = 'https://i.ibb.co/wL9N3j3/2021-12-31-201034.png'
+                title_field = 'Информация о команде info'
+                description_field = 'Бот: "JunFun Bot".\nЯзык программирования: "python".\n```...```'
             else:
                 embed_help = discord.Embed(title='Команда help\nИнформация о команде: не найдено', description='Команда найдена в базе данных команд, но информация о ней не найдена.\nОбычно это значит, что информацию об этой команде ещё не заполнили.', colour=0x0000ff)
+                await ctx.send(embed=embed_help)
+                return
             embed_help = discord.Embed(title='Команда help\nИнформация о команде: ' + name_help, colour=0x0000ff)
             embed_help.add_field(name='Другие формы команды', value=inf)
             embed_help.add_field(name='Есть аргументы', value=args)
             embed_help.add_field(name='Есть обязательные аргументы', value=req_args)
             embed_help.add_field(name='Информация об аргументах:', value=args_info)
             embed_help.add_field(name='Что делает:', value=do)
-            embed_help.set_image(url=ex_res)
+            embed_help_ex = discord.Embed(title='Команда help', colour=0x0000ff)
+            embed_help_ex.add_field(name=title_field, value=description_field)
+            embed_help_ex.set_footer(text='"..." - продолжение оригинальной команды.\nЗапросил ' + str(ctx.message.author), icon_url=profile_picture)
         else:
             embed_help = discord.Embed(title='Команда help\nОшибка', description='Команда не найдена!', colour=0xff0000)
     else:
@@ -119,9 +122,11 @@ async def help_(ctx, command=None):
         member = ctx.author
         for role in member.roles:
             if role.id in moderation:
-                embed_help.add_field(name='Модеративные команды', value='Если вы видите эту категорию, вы являетесь модератором или администратором.\n```1. **Команда не готова** mute (мут, мьют) <пинг участника> - налог скрытия на указанного участника.```', inline=False)
+                embed_help.add_field(name='Модеративные команды', value='Если вы видите эту категорию, вы являетесь модератором или администратором.\n```1. mute (мут, мьют) <пинг участника> - налог скрытия на указанного участника.```', inline=False)
     embed_help.set_footer(text='Все команды используются с префиксом ' + prefix_start + '.\nЗапросил ' + str(ctx.message.author), icon_url=profile_picture)
     await ctx.send(embed=embed_help)
+    if embed_help_ex != None:
+        await ctx.send(embed=embed_help_ex)
     
 @client.command(aliases=['пинг'])
 async def ping(ctx):
@@ -187,6 +192,7 @@ async def random(ctx, type_=None, arg1=None, arg2=None):
             if arg1 != None:
                 if arg1.isdigit() == True:
                     num = randint(1, int(arg1))
+                    arg1 = int(arg1)
                     if arg1 % 10 == 1:
                         message_coin = '(-ой) стороной '
                     elif arg1 % 10 == 2 or arg1 % 10 == 3 or arg1 % 10 == 4:
@@ -263,6 +269,8 @@ async def random(ctx, type_=None, arg1=None, arg2=None):
                 title = 'Команда random\nОшибка'
     else:
         random_text = 'Вы не указали обязательный(-ые) аргумент(-ы)!'
+        color = 0xff0000
+        title = 'Команда random\nОшибка'
     embed_random = discord.Embed(title=title, description=random_text, colour=color)
     profile_picture = ctx.message.author.avatar_url
     embed_random.set_footer(text='Использовал ' + str(ctx.message.author), icon_url=profile_picture)
@@ -280,20 +288,41 @@ async def user(ctx, user:discord.Member=None):
     user_image = Image.open('profile_card_background.png')
     if user == None:
         profile_picture = str(ctx.message.author.avatar_url)
+        user_name = ctx.author.name
+        user_tag = ctx.author.discriminator
+        user_id = ctx.author.id
     else:
-        profile_picture = str(ctx.user.avatar_url)
+        profile_picture = str(user.avatar_url)
+        user_name = user.name
+        user_tag = user.discriminator
+        user_id = user.id
     response = requests.get(profile_picture, stream = True)
     response = Image.open(io.BytesIO(response.content))
     response = response.convert('RGBA')
     response = response.resize((400, 400), Image.ANTIALIAS)
-    user_image.paste(response, (75, 75, 575, 575))
+    user_image.paste(response, (30, 30, 430, 430))
     idraw = ImageDraw.Draw(user_image)
-    user_name = ctx.author.name
-    user_tag = ctx.author.discriminator
-    card_headline = ImageFont.truetype('arial.ttf', size = 100)
-    card_under = ImageFont.truetype('arial.ttf', size = 60)
-    idraw.text((545, 75), f'{user_name}#{user_tag}', font = card_headline)
-    idraw.text((545, 250), f'ID юзера: {ctx.author.id}', font = card_under)
+    if user == None or user == ctx.message.author:
+        user_tag = user_tag + '\n(Вы)'
+    user_nickname_size = 0
+    if len(str(user_name + '#' + user_tag)) <= 14.714285714285714:
+        user_nickname_size = 70
+    if len(str(user_name + '#' + user_tag)) >= 14.714285714285714 and len(str(user_name + '#' + user_tag)) <= 18.42857142857143:
+        user_nickname_size = 60
+    if len(str(user_name + '#' + user_tag)) >= 18.42857142857143 and len(str(user_name + '#' + user_tag)) <= 22.14285714285714:
+        user_nickname_size = 50
+    if len(str(user_name + '#' + user_tag)) >= 22.14285714285714 and len(str(user_name + '#' + user_tag)) <= 25.85714285714286:
+        user_nickname_size = 40
+    if len(str(user_name + '#' + user_tag)) >= 25.85714285714286 and len(str(user_name + '#' + user_tag)) <= 29.57142857142857:
+        user_nickname_size = 30
+    if len(str(user_name + '#' + user_tag)) >= 29.57142857142857 and len(str(user_name + '#' + user_tag)) <= 33.28571428571428:
+        user_nickname_size = 20
+    if len(str(user_name + '#' + user_tag)) >= 33.28571428571428 and len(str(user_name + '#' + user_tag)) <= 37:
+        user_nickname_size = 10
+    card_headline = ImageFont.truetype('arial.ttf', size=user_nickname_size)
+    card_under = ImageFont.truetype('arial.ttf', size=50)
+    idraw.text((460, 75), f'{user_name}#{user_tag}', font = card_headline)
+    idraw.text((460, 400), f'ID: {user_id}', font = card_under)
     user_image.save('user_card.png')
     
     author_profile_picture = ctx.message.author.avatar_url
@@ -331,6 +360,10 @@ async def new_year_congrats(ctx):
     profile_picture = ctx.message.author.avatar_url
     embed_new_year_congrats.set_footer(text='Текст написал и вас поздравил ' + str(ctx.message.author), icon_url=profile_picture)
     await ctx.send(content='<@everyone>', embed=embed_new_year_congrats, allowed_mentions = allowed_mentions)
+
+@client.command()#---------------------------------------------------------------------------------только владелец
+async def system(ctx):
+    await ctx.send('Команда сейчас пуста.')
 
 @client.command(aliases=['чистка'])#---------------------------------------------------------------только владелец
 @commands.has_role(880424360400269394)
@@ -468,7 +501,7 @@ async def mute(ctx, member:discord.Member=None, time_mute=10, *, reason=None):#�
     embed_mute = discord.Embed(title = title, description = mute_text, colour = color)
     profile_picture = ctx.message.author.avatar_url
     embed_mute.set_footer(text='Модератор ' + str(ctx.message.author), icon_url=profile_picture)
-    await channel.send(embed=embed_mute)
+    mute_message = await channel.send(embed=embed_mute)
     if channel == channel_mute:
         embed_mute2 = discord.Embed(title = title, description = mute_text + '\nВ канал <#888561763182845962> написано сообщение.', colour = color)
         profile_picture = ctx.message.author.avatar_url
@@ -477,5 +510,8 @@ async def mute(ctx, member:discord.Member=None, time_mute=10, *, reason=None):#�
         await member.move_to(None)
         await sleep(time_mute * 60)
         await member.edit(roles=member_roles_vocabluary[member.nick])
+        del member_roles_vocabluary[member.nick]
+        embed_mute3 = discord.Embed(title = title, description = mute_text + '\n**Участник уже расскрыт.**', colour = color)
+        await mute_message.edit(embed=embed_mute3)
 
 client.run('ODg4NDc4MzIxNjU3MTM5MjIw.YUTR6w.PuOnMe2BZGnFvTek2aJPA7IkNH8')
