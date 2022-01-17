@@ -8,6 +8,7 @@ discord==1.7.3
 discord.py==1.7.3
 idna==3.2
 multidict==5.1.0
+Pillow==9.0.0
 pip==21.3.1
 PyQt5==5.15.6
 PyQt5-Qt5==5.15.2
