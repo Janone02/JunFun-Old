@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 aiohttp==3.7.4.post0
 async-timeout==3.0.1
 attrs==21.2.0
@@ -8,6 +9,7 @@ discord==1.7.3
 discord.py==1.7.3
 idna==3.2
 multidict==5.1.0
+Pillow==9.0.0
 pip==21.3.1
 PyQt5==5.15.6
 PyQt5-Qt5==5.15.2
@@ -16,4 +18,25 @@ PyYAML==6.0
 setuptools==56.0.0
 turtle==0.0.1
 typing-extensions==3.10.0.2
+=======
+aiohttp==3.7.4.post0
+async-timeout==3.0.1
+attrs==21.2.0
+chardet==4.0.0
+cog==0.0.3
+Cogs==0.4.4
+discord==1.7.3
+discord.py==1.7.3
+idna==3.2
+multidict==5.1.0
+Pillow==9.0.0
+pip==21.3.1
+PyQt5==5.15.6
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.9.0
+PyYAML==6.0
+setuptools==56.0.0
+turtle==0.0.1
+typing-extensions==3.10.0.2
+>>>>>>> 02b13491b57802263753fa5ed2934545ed790e36
 yarl==1.6.3
