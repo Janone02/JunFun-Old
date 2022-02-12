@@ -6,6 +6,7 @@ cog==0.0.3
 Cogs==0.4.4
 discord==1.7.3
 discord.py==1.7.3
+discord_components==2.1.2
 discord-py-interactions==4.0.1
 discord-py-slash-command==3.0.3
 idna==3.2
