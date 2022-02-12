@@ -27,16 +27,16 @@ slash = SlashCommand(client, sync_commands=True)
 
 moderation = [880424360400269394, 891413249801748510, 888356594251890708, 895782543553605662, 856608768090439710]
 
-english_commands = ['8ball', 'prefix', 'ping', 'bot', 'clear', 'kick', 'ban', 'unban', 'new_year_congrats', 'random', 'help', 'mute', 'user', 'server', 'xp']
-russian_comands = ['пинг', 'префикс', 'бот', 'чистка', 'кик', 'бан', 'разбан', 'пнг', 'рандом', 'хелп', 'мут', 'юзер', 'сервер']
-other_commands = ['pref', 'преф', 'ранд', 'rand', 'bot-info', 'бот-инфо', 'мьют', 'скрыть', 'серв', 'serv', 'юз']
+english_commands = ['8ball', 'prefix', 'ping', 'bot', 'clear', 'kick', 'ban', 'unban', 'new_year_congrats', 'random', 'help', 'mute', 'user', 'server', 'xp', 'avatar', 'gamble', 'system', 'poll', 'default']
+russian_comands = ['пинг', 'префикс', 'бот', 'чистка', 'кик', 'бан', 'разбан', 'пнг', 'рандом', 'хелп', 'мут', 'юзер', 'сервер', 'аватар', 'азарт', 'опрос', 'стандарт']
+other_commands = ['pref', 'преф', 'ранд', 'rand', 'bot-info', 'бот-инфо', 'мьют', 'скрыть', 'серв', 'serv', 'юз', 'ава']
 
-linf = {'8ball':None, 'ping':'пинг', 'prefix':'префикс, pref, преф', 'bot':'бот, bot-info, бот-инфо', 'clear':'чистка', 'kick':'кик', 'ban':'бан', 'unban':'разбан', 'new_year_congrats':'пнг', 'random':'рандом, rand, ранд', 'help':'хелп', 'mute':'мут, мьют, скрыть', 'user':'юзер, юз', 'server':'сервер, serv, серв', 'xp':None}
-largs = {'8ball':'<вопрос>', 'ping':None, 'prefix':'<new_pref>', 'bot':None, 'clear':'<total>', 'kick':'<member>, <reason>', 'ban':'<member>, <reason>', 'unban':'<member>', 'new_year_congrats':None, 'random':'<type_>, <arg1>, <arg2>', 'help':'<команда>', 'mute':'<member>, <time_mute>, <reason>', 'user':'<user_m>, <background>', 'server':None, 'xp':'<member>, <type_do>, <amount>'}
-lreq_args = {'8ball':'<вопрос>', 'ping':None, 'prefix':'<new_pref>', 'bot':None, 'clear':None, 'kick':'<member>', 'ban':'<member>', 'unban':'<member>', 'new_year_congrats':None, 'random':'<type_> (в некоторых случаях: <arg1>, <arg2>)', 'help':None, 'mute':'<member>', 'user':None, 'server':None, 'xp':'<member>, <type_do>, <amount>'}
-largs_info = {'8ball':'<вопрос> - ваш вопрос волшебному шару', 'ping':None, 'prefix':'<new_pref> - новый префикс', 'bot':None, 'clear':'<total> - количество сообщений на чистку', 'kick':'<member> - участник на кик\n<reason> - причина кика', 'ban':'<member> - участник на бан\n<reason> - причина бана', 'unban':'<member> - участник на разбан', 'new_year_congrats':None, 'random':'<type_> - тип рандома (число, дробь, монетка, кость, гранник)\n<arg1> (обязателен, если <type_> = число, гранник или дробь) - 1-й аргумент\n<arg2> (обязателен, если <type_> = число или дробь) - 2-й аргумент', 'help':'<команда> - команда из списка команд', 'mute':'<member> - участник на скрытие\n<time_mute> - время скрытия в минутах\n<reason> - причина скрытия', 'user':'<user_m> - владелец карточки\n<backgroung> - фон карточки', 'server':None, 'xp':'<member> - участник, чьё xp измениться\n<type_do> - тип действия (a - добавить, r - удалить, s - установить)\n<amount> - на сколько изменить xp'}
-ldo = {'8ball':'Отвечает на ваш вопрос', 'ping':'Узнаёт задержку бота в мс', 'prefix':'Изменяет префикс бота', 'bot':'Печатает информацию о <@888478321657139220>', 'clear':'Нет аргументов - очищает канал на 10 сообщений.\nЕсть аргумент <total> - очищает канал на указанное количество сообщений', 'kick':'Выгоняет участника с сервера', 'ban':'Банит участника на сервере', 'unban':'Разбанивает участника на сервере', 'new_year_congrats':'Поздравляет с новым годом', 'random':'Использует команду рандома, указанную в <type_>', 'help':'Нет аргументов - печатает список всех команд и их краткое описание.\nЕсть аргумент <command> - печатает полную информацию о конкретной команде', 'mute':'Мутит (мьютит) участника максимум на 3 суток', 'user':'Печатает карточку указанного участника или вас', 'server':'Печатает информацию о сервере', 'xp':'Добавляет, удаляет, устанавливает участнику xp'}
-lcan_run = {'8ball':None, 'ping':None, 'prefix':'owner', 'bot':None, 'clear':'owner', 'kick':'owner', 'ban':'owner', 'unban':'owner', 'new_year_congrats':'owner', 'random':None, 'help':None, 'mute':'moder', 'user':None, 'server':None, 'xp':'owner'}
+linf = {'8ball':None, 'ping':'пинг', 'prefix':'префикс, pref, преф', 'bot':'бот, bot-info, бот-инфо', 'clear':'чистка', 'kick':'кик', 'ban':'бан', 'unban':'разбан', 'new_year_congrats':'пнг', 'random':'рандом, rand, ранд', 'help':'хелп', 'mute':'мут, мьют, скрыть', 'user':'юзер, юз', 'server':'сервер, serv, серв', 'xp':None, 'avatar':'аватар, ава', 'gamble':'азарт', 'system':None, 'poll':'опрос', 'default':'стандарт'}
+largs = {'8ball':'<вопрос>', 'ping':None, 'prefix':'<new_pref>', 'bot':None, 'clear':'<total>', 'kick':'<member>, <reason>', 'ban':'<member>, <reason>', 'unban':'<member>', 'new_year_congrats':None, 'random':'<type_>, <arg1>, <arg2>', 'help':'<команда>', 'mute':'<member>, <time_mute>, <reason>', 'user':'<user_m>, <background>', 'server':None, 'xp':'<member>, <type_do>, <amount>', 'avatar':'<avatar_own>', 'gamble':'<type_>, <arg1>, <arg2>', 'system':None, 'poll':'<type_>, <question>, <variants>', 'default':'<background>'}
+lreq_args = {'8ball':'<вопрос>', 'ping':None, 'prefix':'<new_pref>', 'bot':None, 'clear':None, 'kick':'<member>', 'ban':'<member>', 'unban':'<member>', 'new_year_congrats':None, 'random':'<type_> (в некоторых случаях: <arg1>, <arg2>)', 'help':None, 'mute':'<member>', 'user':None, 'server':None, 'xp':'<member>, <type_do>, <amount>', 'avatar':None, 'gamble':'<type_>, <arg1>, <arg2>', 'system':None, 'poll':'<type_>, <question>', 'default':'<background>'}
+largs_info = {'8ball':'<вопрос> - ваш вопрос волшебному шару', 'ping':None, 'prefix':'<new_pref> - новый префикс', 'bot':None, 'clear':'<total> - количество сообщений на чистку', 'kick':'<member> - участник на кик\n<reason> - причина кика', 'ban':'<member> - участник на бан\n<reason> - причина бана', 'unban':'<member> - участник на разбан', 'new_year_congrats':None, 'random':'<type_> - тип рандома (число, дробь, монетка, кость, гранник)\n<arg1> (обязателен, если <type_> = число, гранник или дробь) - 1-й аргумент\n<arg2> (обязателен, если <type_> = число или дробь) - 2-й аргумент', 'help':'<команда> - команда из списка команд', 'mute':'<member> - участник на скрытие\n<time_mute> - время скрытия в минутах\n<reason> - причина скрытия', 'user':'<user_m> - владелец карточки\n<backgroung> - фон карточки', 'server':None, 'xp':'<member> - участник, чьё xp измениться\n<type_do> - тип действия (a - добавить, r - удалить, s - установить)\n<amount> - на сколько изменить xp', 'avatar':'<avatar_own> - владелец аватарки', 'gamble':'<type_> - тип азарта\n<arg1> - 1-й аргумент\n<arg2> - 2-й аргумент', 'system':None, 'poll':'<type_> - тип опроса\n<question> - вопрос\n<variants> - варианты ответа', 'default':'<background> - фон карточки'}
+ldo = {'8ball':'Отвечает на ваш вопрос', 'ping':'Узнаёт задержку бота в мс', 'prefix':'Изменяет префикс бота', 'bot':'Печатает информацию о <@888478321657139220>', 'clear':'Нет аргументов - очищает канал на 10 сообщений.\nЕсть аргумент <total> - очищает канал на указанное количество сообщений', 'kick':'Выгоняет участника с сервера', 'ban':'Банит участника на сервере', 'unban':'Разбанивает участника на сервере', 'new_year_congrats':'Поздравляет с новым годом', 'random':'Использует команду рандома, указанную в <type_>', 'help':'Нет аргументов - печатает список всех команд и их краткое описание.\nЕсть аргумент <command> - печатает полную информацию о конкретной команде', 'mute':'Мутит (мьютит) участника максимум на 3 суток', 'user':'Печатает карточку указанного участника или вас', 'server':'Печатает информацию о сервере', 'xp':'Добавляет, удаляет, устанавливает участнику xp', 'avatar':'Печатает аватарку вас или указанного участника', 'gamble':'Азартные игры на xp', 'system':'Команда используется в целях тестирования функций этого бота. Обычно, она вызывает команду help, но иногда она печатает что-то другое', 'poll':'Создаёт опросы разных типов', 'default':'Устанавливает стандартный фон вашей карточки пользователя'}
+lcan_run = {'8ball':None, 'ping':None, 'prefix':'owner', 'bot':None, 'clear':'owner', 'kick':'owner', 'ban':'owner', 'unban':'owner', 'new_year_congrats':'owner', 'random':None, 'help':None, 'mute':'moder', 'user':None, 'server':None, 'xp':'owner', 'avatar':None, 'gamble':None, 'system':None, 'poll':'owner', 'default':None}
 
 command_choices = []
 for command in english_commands:
@@ -57,27 +57,26 @@ with open('bot_version.txt') as version_last:
 with open('bot_version.txt', 'w') as version_last:
     version_last.write(str(bot_version_last + 1))
     version_last.close()
-bot_version = 'Release 1.0.'
+bot_version = 'Release 1.3.'
 
 def slash_context(string: SlashContext):
     return string
 def discord_member(string: discord.Member):
     return string
 
-async def update_data(users, user):
-    if not f'{user.id}' in users:
-        users[f'{user.id}'] = {}
-        users[f'{user.id}'] = 0
+async def update_data(users, user_):
+    if not f'{user_.id}' in users:
+        users[f'{user_.id}'] = 0
 
-async def add_experience(users, user, exp):
-    users[f'{user.id}'] += exp
+async def add_experience(users, user_, exp):
+    users[f'{user_.id}'] += exp
 
 async def unmute_time():
     while True:
         global mutes
         for member in mutes:
             cr_time = time.time()
-            end_mute = float(mutes[member]['time'])
+            end_mute = float(mutes[member]['time']) - mutes[member]['minus_time']
             if cr_time >= end_mute:
                 global guild
                 global mute_role
@@ -107,7 +106,7 @@ async def on_ready():
     global guild
     global mute_role
     channel_mute = client.get_channel(888561763182845962)
-    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.streaming, name='-help, -bot', url='https://www.twitch.tv/janone02'))
+    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.streaming, name='-help | -bot', url='https://www.twitch.tv/janone02'))
     print('Bot successfully started.')
     guild = discord.utils.get(client.guilds, name="JunFun")
     mute_role = discord.utils.get(guild.roles, name="Скрытый")
@@ -127,13 +126,16 @@ async def on_member_join(member):
 async def on_message(message):
     if message.author.bot == False:
         if message.content[0] != '-':
-            if len(message.content) != 100:
-                with open('users.json', 'r') as f:
-                    users = json.load(f)
-                await update_data(users, message.author)
-                await add_experience(users, message.author, 5)
-                with open('users.json', 'w') as f:
-                    json.dump(users, f)
+            if len(message.content) <= 100 and len(message.content) >= 2:
+                is_plus = randint(0, 3)
+                if is_plus >= 0:
+                    with open('users.json', 'r') as f:
+                        users = json.load(f)
+                    await update_data(users, message.author)
+                    xp_ = randint(5, 10)
+                    await add_experience(users, message.author, int(xp_))
+                    with open('users.json', 'w') as f:
+                        json.dump(users, f)
     await client.process_commands(message)
 #команды
 @slash.slash(name='help', description='Cписок команд сервера или подробная информация об 1 команде', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='command', description='Команда, о которой будет напечатана информация', required=False, option_type=3, choices=command_choices)])
@@ -188,12 +190,12 @@ async def help_(ctx, command=None):
             embed_help = discord.Embed(title='Команда help\nОшибка', description='Команда не найдена!', colour=0xff0000)
     else:
         embed_help = discord.Embed(title='Команда help', colour=0x0000ff)
-        embed_help.add_field(name='Общие команды', value='```1. help (хелп) <command> - список команд сервера или подробная информация об 1 команде.\n2. bot (бот, bot-info, bot_info) - узнать о боте.\n3. ping (пинг) - узнать пинг бота.\n4. 8ball <question>* - спросить волшебный шар вопрос.\n5. random (рандом, ранд, rand) <type_>* <1 аргумент> <2 аргумент> - рандомайзеры: монетка, многогранник, число, дробь...\n6. user (юзер) <user>* - отправка карточки пользователя\n7. server (сервер, serv, серв) - печатает информацию о сервере```\n* - обязательный аргумент.')
+        embed_help.add_field(name='Общие команды', value='```1. help (хелп) <command> - список команд сервера или подробная информация об 1 команде.\n2. bot (бот, bot-info, bot_info) - узнать о боте.\n3. ping (пинг) - узнать пинг бота.\n4. 8ball <question>* - спросить волшебный шар вопрос.\n5. random (рандом, ранд, rand) <type_>* <1 аргумент> <2 аргумент> - рандомайзеры: монетка, многогранник, число, дробь...\n6. user (юзер) <user_m> <background> - отправка карточки пользователя\n7. server (сервер, serv, серв) - печатает информацию о сервере\n8. avatar (аватар, ава) <member> - показывает аватарку вас или участника\n9. gamble (азарт) <type_>* <arg1>* <arg2>* - азартные игры\n10. default (стандарт) <background>* - устанавливает стандартный фон для вашей карточки пользователя```\n***** - обязательный аргумент')
         member = ctx.author
         for role in member.roles:
             if role.id in moderation:
-                embed_help.add_field(name='Модеративные команды', value='Если вы видите эту категорию, вы являетесь модератором или администратором.\n```1. mute (мут, мьют) <member>* <time_mute> <reason> - налог скрытия на указанного участника.```', inline=False)
-    embed_help.set_footer(text='Все команды используются с префиксом ' + prefix_cr + '.')
+                embed_help.add_field(name='Модеративные команды', value='Если вы видите эту категорию, вы являетесь модератором или администратором.\n```1. mute (мут, мьют) <member>* <time_mute> <reason> - налог скрытия на указанного участника.```\n***** - обязательный аргумент.', inline=False)
+    embed_help.set_footer(text='help <command> - подробная информация о команде. Все команды используются с префиксом ' + prefix_cr + ' и /.')
     await ctx.reply(embed=embed_help)
     await log_reg('Run command: help', ctx.author.name)
 
@@ -300,39 +302,16 @@ async def random(ctx, type_=None, arg1=None, arg2=None):
                 embed_random = discord.Embed(description = f'Вы подкинули монетку и она приземлилась показав\n```{coin}```', title = 'Команда random', colour=0x0000ff)
             else:
                 if arg1 == 'Решка' or arg1 == 'Орёл' or arg1 == 'Ребро':
-                    if arg2 == None:
-                        arg2 = 0
-                    arg2 = int(arg2)
-                    if arg2 <= 25 and arg2 >= 0:
-                        random_text = f'Ваши ставки:\n```{arg1}'
-                        if arg2 != 0:
-                            random_text = f'{random_text} | {arg2} xp'
-                        random_text = f'{random_text}```\nЧто выпало:\n```{coin_name}```\nИтог игры:\n```'
-                        with open('users.json', 'r') as f:
-                            users = json.load(f)
-                        await update_data(users, ctx.author)
-                        if coin_name == arg1:
-                            await add_experience(users, ctx.author, arg2)
-                            if arg2 != 0:
-                                random_text = random_text + f'Вы выиграли и получили {arg2} xp```'
-                            else:
-                                random_text = random_text + f'Вы выиграли```'
-                        else:
-                            users[f'{str(ctx.author.id)}'] -= arg2
-                            if arg2 != 0:
-                                random_text = random_text + f'Вы проиграли и потеряли {arg2} xp```'
-                            else:
-                                random_text = random_text + f'Вы проиграли```'
-                        if coin_name == 'Ребро':
-                            random_text = f'{random_text}\nВам выпал бонус в виде 125 xp за "Ребро". Шанс того, что монетка приземлиться на ребро в этой команде = 1 к 2001'
-                            await add_experience(users, ctx.author, 125)
-                        with open('users.json', 'w') as f:
-                            json.dump(users, f)
-                        embed_random = discord.Embed(description = random_text, color = 0x0000ff, title = 'Команда random')
+                    if coin_name == arg1:
+                        game_end = f'Вы выиграли'
                     else:
-                        embed_random = discord.Embed(description = 'Ваша ставка не может быть больше 25 xp или меньше 0 xp!', color = 0xff0000, title = 'Команда random\nОшибка')
+                        game_end = f'Вы проиграли'
+                    embed_random = discord.Embed(color = 0x0000ff, title = 'Команда random')
+                    embed_random.add_field(name='Ваши ставки:', value=f'```{arg1}```')
+                    embed_random.add_field(name='Что выпало:', value=f'```{coin_name}```')
+                    embed_random.add_field(name='Итог:', value=f'```{game_end}```')
                 else:
-                    embed_random = discord.Embed(description = 'Вы можете выбрать только "Орёл", "Решка" или "Ребро"!', color = 0xff0000, title = 'Команда random\nОшибка')
+                    embed_random = discord.Embed(description = 'Вы можете выбрать только "Орёл", "Решка" или "Ребро" в качестве ставки!', color = 0xff0000, title = 'Команда random\nОшибка')
             await log_reg('Run command: random (coin)', ctx.author.name)
         elif type_ == 'дробь' or type_ == 'float':
             if arg1 != None and arg2 != None:
@@ -376,6 +355,8 @@ async def random(ctx, type_=None, arg1=None, arg2=None):
             else:
                 embed_random = discord.Embed(desription = 'Укажите количество игральных костей числом!', colour = 0xff0000, title = 'Команда random\nОшибка')
             await log_reg('Run command: random (dice)', ctx.author.name)
+        else:
+            embed_random = discord.Embed(description = 'Вы указали несуществующий тип рандома!', colour = 0xff0000, title = 'Команда random\nОшибка')
     else:
         embed_random = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', colour = 0xff0000, title = 'Команда random\nОшибка')
         await log_reg('Run command: random', ctx.author.name)
@@ -385,14 +366,14 @@ async def random(ctx, type_=None, arg1=None, arg2=None):
 @client.command(aliases=['bot-info', 'бот', 'бот-инфо'])
 async def bot(ctx):
     global prefix
-    embed_info = discord.Embed(title='Команда bot', description='Бот: JunFun Bot.\nЯзык программирования: python.\nИспользуемая библиотека: discord.py.\nПрефикс бота: ' + prefix_cr + '.\nАвтор и кодер бота: Janone#2404.\nДата начала разработки и выпуска первой версии: <t:1636322933>\nДата регистрации: <t:1631900139>\nДата релиза: <t:1643574600>\nТекущая версия: ' + bot_version + '\nБот был сделан специально и исключительно для сервера JunFun, использование бота на других серверах запрещено! Исходный код закрыт!', colour = 0x0000ff)
-    embed_info.set_footer(text='Janone© | 2022 Все права защищены | JunFun Bot Project')
-    await ctx.reply(embed=embed_info)
+    embed_bot = discord.Embed(title='Команда bot', description='Бот: JunFun Bot.\nЯзык программирования: python.\nИспользуемая библиотека: discord.py.\nПрефикс бота: ' + prefix_cr + '.\nАвтор и кодер бота: Janone#2404.\nДата начала разработки и выпуска первой версии: <t:1636322933>\nДата регистрации: <t:1631900139>\nДата релиза: <t:1643574600>\nТекущая версия: ' + bot_version + '\nБот был сделан специально и исключительно для сервера JunFun. Использование бота на других серверах запрещено без разрешения владельца проекта! Исходный код закрыт!', colour = 0x0000ff)
+    embed_bot.set_footer(text='<@840232854066954271> (Janone©) | 2022 Все права защищены | JunFun Bot©')
+    await ctx.reply(embed=embed_bot)
     await log_reg('Run command: bot', ctx.author.name)
 
 @slash.slash(name='user', description='Печатает карточку вас или выбранного участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='user_m', description='Пользователь, чью карточку вы хотите видеть', option_type=6, required=False), create_option(name='background', description='Фон карточки', option_type=3, required=False, choices=[create_choice(name='Красный', value='r'), create_choice(name='Синий', value='b'), create_choice(name='Зелёный', value='g'), create_choice(name='Жёлтый', value='y'), create_choice(name='Фиолетовый', value='p'), create_choice(name='Абстракция 1', value='a1'), create_choice(name='Абстракция 2', value='a2'), create_choice(name='Кибергород 1', value='c1'), create_choice(name='Кибергород 2', value='c2'), create_choice(name='Кибергород 3', value='c3'), create_choice(name='Кибергород 4', value='c4'), create_choice(name='Космос 1', value='g1'), create_choice(name='Космос 2', value='g2'), create_choice(name='Космос 3', value='g3'), create_choice(name='Космос 4', value='g4'), create_choice(name='Стандартный', value='d')])])
 @client.command(aliases=['юзер', 'юз'])
-async def user(ctx, user_m: discord.Member=None, background='default'):
+async def user(ctx, user_m: discord.Member=None, background=None):
     try:
         profile_picture = ctx.message.author.avatar_url
     except:
@@ -402,11 +383,10 @@ async def user(ctx, user_m: discord.Member=None, background='default'):
             user_m = slash_context(user_m)
     error = 0
     card_colors = {'g': 'green', 'b': 'blue', 'r': 'red', 'y': 'yellow', 'c1': 'cybercity1', 'c2': 'cybercity2', 'c3': 'cybercity3', 'c4': 'cybercity4', 'a1': 'abstraction1', 'a2': 'bstraction2', 'd': 'old', 'p': 'purple', 'g1':'galactic1', 'g2':'galactic2', 'g3':'galactic3', 'g4':'galactic4', 'default':'old'}
-    if background in card_colors.keys():
-        user_image = Image.open(f'card_backgrounds/profile_card_background_{card_colors[background]}.png')
-    else:
-        user_image = Image.open('card_backgrounds/profile_card_background_error.png')
-        error = 1
+    if background != None:
+        if not background in card_colors:
+            user_image = Image.open('card_backgrounds/profile_card_background_error.png')
+            error = 1
     if error != 1: 
         if user_m == None:
             profile_picture = str(ctx.author.avatar_url)
@@ -419,6 +399,18 @@ async def user(ctx, user_m: discord.Member=None, background='default'):
             user_name = user_m.name
             user_tag = user_m.discriminator
             user_id = user_m.id
+        with open('users_backs.json') as needb:
+            needback = json.load(needb)
+        if background == None:
+            if str(user_id) in needback:
+                user_image = Image.open(f'card_backgrounds/profile_card_background_{needback[str(user_id)]}.png')
+            else:
+                user_image = Image.open('card_backgrounds/profile_card_background_old.png')
+        else:
+            if background in card_colors:
+                user_image = Image.open(f'card_backgrounds/profile_card_background_{card_colors[background]}.png')
+            else:
+                user_image = Image.open(f'card_backgrounds/profile_card_background_error.png')
         response = requests.get(profile_picture, stream = True)
         response = Image.open(io.BytesIO(response.content))
         response = response.convert('RGBA')
@@ -482,12 +474,187 @@ async def user(ctx, user_m: discord.Member=None, background='default'):
     await ctx.reply(embed=embed_user, file=user_embed_image)
     await log_reg('Run command: user', ctx.author.name)
 
+@slash.slash(name='avatar', description='Печатает аватарку вас или выбранного участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='avatar_own', description='Пользователь, чью аватарку вы хотите видеть', option_type=6, required=False)])
+@client.command(aliases=['ава', 'аватар'])
+async def avatar(ctx, avatar_own: discord.Member=None):
+    try:
+        profile_picture = ctx.message.author.avatar_url
+    except:
+        if avatar_own != None:
+            avatar_own = slash_context(avatar_own)
+    if avatar_own == None:
+        avatar_own = ctx.author
+        ava = ctx.author.avatar_url
+    else:
+        ava = avatar_own.avatar_url
+    embed_avatar = discord.Embed(title=f'Команда avatar\nПользователь: {avatar_own.name}', color=0x0000ff)
+    embed_avatar.set_image(url=ava)
+    await ctx.reply(embed=embed_avatar)
+    await log_reg('Run command: avatar', ctx.author.name)
+
 @slash.slash(name='server', description='Печатает информацию о сервере', guild_ids=[847106317356630049, 934526675373420654], options=[])
 @client.command(aliases=['serv', 'сервер', 'серв'])
 async def server(ctx):
     embed_server = discord.Embed(title='Команда server', description='Сервер: JunFun\nВладелец: Janone#2404\nКоличество участников: ' + str(ctx.guild.member_count) + '\nДата создания: <t:1622047084>', colour=0x0000ff)
     await ctx.reply(embed=embed_server)
+    await log_reg('Run command: server', ctx.author.name)
+
+@slash.slash(name='gamble', description='Азартные игры на xp (не больше 25 xp)', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип игры', option_type=3, required=True, choices=[create_choice(name='Монетка', value='coin'), create_choice(name='Число', value='number')]), create_option(name='arg1', description='Аргумент 1', option_type=3, required=True), create_option(name='arg2', description='Аргумент 2', option_type=4, required=True)])
+@client.command(aliases=['азарт'])
+async def gamble(ctx, type_=None, arg1=None, arg2=None):
+    if type_ != None:
+        with open('users.json', 'r') as f:
+            users = json.load(f)
+        if type_ == 'монетка' or type_ == 'coin':
+            num = randint(0, 2000)
+            if num >= 1 and num <= 1000:
+                coin = 'Решка'
+            elif num >= 1001 and num <= 2000:
+                coin = 'Орёл'
+            elif num == 0:
+                coin = 'Ребро'
+            if arg1 != None:
+                if arg1 == 'Решка' or arg1 == 'Орёл' or arg1 == 'Ребро':
+                    if arg2 != None:
+                        if str(arg2).isdigit() == True:
+                            arg2 = int(arg2)
+                            if arg2 >= 1 and arg2 <= 25:
+                                arg2 = int(arg2)
+                                await update_data(users, ctx.author)
+                                if coin == arg1:
+                                    await add_experience(users, ctx.author, arg2)
+                                    game_end = f'Вы выиграли и получили {arg2} xp'
+                                else:
+                                    users[f'{str(ctx.author.id)}'] -= arg2
+                                    game_end = f'Вы проиграли и потеряли {arg2} xp'
+                                embed_gamble = discord.Embed(color = 0x0000ff, title = 'Команда gamble')
+                                embed_gamble.add_field(name='Ваши ставки:', value=f'```{arg1}```')
+                                embed_gamble.add_field(name='Что выпало:', value=f'```{coin}```')
+                                embed_gamble.add_field(name='Итог:', value=f'```{game_end}```')
+                                if coin == 'Ребро':
+                                    embed_gamble.add_field(name='Бонус', value='Вам выпал бонус в виде 125 xp за "Ребро". Шанс того, что монетка приземлиться на ребро в этой команде = 1 к 2001', inline=False)
+                                    await add_experience(users, ctx.author, 125)
+                            else:
+                                embed_gamble = discord.Embed(description = 'Ваша ставка не может быть больше 25 xp или меньше 1 xp!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                        else:
+                            embed_gamble = discord.Embed(description = 'В аргументе может быть только число!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                    else:
+                        embed_gamble = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                else:
+                    embed_gamble = discord.Embed(description = 'Вы можете выбрать только "Орёл", "Решка" или "Ребро"!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+            else:
+                embed_gamble = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+            await log_reg('Run command: gamble (coin)', ctx.author.name)
+        elif type_ == 'num' or type_ == 'number' or type_ == 'число':
+            if arg1 != None:
+                if str(arg1).isdigit() == True:
+                    arg1 = int(arg1)
+                    if arg1 >= 1 and arg1 <= 5:
+                        if arg2 != None:
+                            if str(arg2).isdigit() == True:
+                                arg2 = int(arg2)
+                                if arg2 >= 2 and arg2 <= 5:
+                                    gam_num = randint(1, arg2)
+                                    if gam_num == 1:
+                                        await add_experience(users, ctx.author, (arg1 * arg2))
+                                        game_end = f'Вы выиграли и получили {arg1 * arg2} xp'
+                                    else:
+                                        users[str(ctx.author.id)] -= (arg1 * arg2)
+                                        game_end = f'Вы проиграли и потеряли {arg1 * arg2} xp'
+                                    embed_gamble = discord.Embed(color = 0x0000ff, title = 'Команда gamble')
+                                    embed_gamble.add_field(name='Ваши ставки:', value=f'```{arg1} xp с риском {100 // arg2}% ```')
+                                    embed_gamble.add_field(name='Итог:', value=f'```{game_end}```')
+                                else:
+                                    embed_gamble = discord.Embed(description = 'Риск не может быть меньше 2 или больше 5!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                            else:
+                                embed_gamble = discord.Embed(description = 'В агрументах могут быть только числа!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                        else:
+                            embed_gamble = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                    else:
+                        embed_gamble = discord.Embed(description = 'Ваша ставка не может быть меньше 1 xp или больше 5 xp!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+                else:
+                    embed_gamble = discord.Embed(description = 'В агрументах могут быть только числа!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+            else:
+                embed_gamble = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+            await log_reg('Run command: gamble (number)', ctx.author.name)
+        else:
+            embed_gamble = discord.Embed(description = 'Вы указали несуществующий тип азарта!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+            await log_reg('Run command: gamble', ctx.author.name)
+    else:
+        embed_gamble = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', color = 0xff0000, title = 'Команда gamble\nОшибка')
+        await log_reg('Run command: gamble', ctx.author.name)
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
+    await ctx.reply(embed=embed_gamble)
+
+@slash.slash(name='default', description='Устанавливает стандартную карточку пользователя', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name = 'background', description = 'Фон карточки', option_type=3, required=True, choices=[create_choice(name='Красный', value='r'), create_choice(name='Синий', value='b'), create_choice(name='Зелёный', value='g'), create_choice(name='Жёлтый', value='y'), create_choice(name='Фиолетовый', value='p'), create_choice(name='Абстракция 1', value='a1'), create_choice(name='Абстракция 2', value='a2'), create_choice(name='Кибергород 1', value='c1'), create_choice(name='Кибергород 2', value='c2'), create_choice(name='Кибергород 3', value='c3'), create_choice(name='Кибергород 4', value='c4'), create_choice(name='Космос 1', value='g1'), create_choice(name='Космос 2', value='g2'), create_choice(name='Космос 3', value='g3'), create_choice(name='Космос 4', value='g4'), create_choice(name='Стандартный', value='d')])])
+@client.command(aliases=['стандарт'])
+async def default(ctx, background=None):
+    if background != None:
+        card_colors = {'g': 'green', 'b': 'blue', 'r': 'red', 'y': 'yellow', 'c1': 'cybercity1', 'c2': 'cybercity2', 'c3': 'cybercity3', 'c4': 'cybercity4', 'a1': 'abstraction1', 'a2': 'bstraction2', 'd': 'old', 'p': 'purple', 'g1':'galactic1', 'g2':'galactic2', 'g3':'galactic3', 'g4':'galactic4', 'default':'old'}
+        if background in card_colors.keys():
+            with open('users_backs.json') as file:
+                backs = json.load(file)
+            if str(ctx.author.id) in backs.keys():
+                del backs[str(ctx.author.id)]
+            backs[str(ctx.author.id)] = card_colors[background]
+            with open('users_backs.json', 'w') as file:
+                json.dump(backs, file)
+            embed_default = discord.Embed(title='Команда default', description=f'Ваш фон карточки был успешно изменён на **{card_colors[background]}**.', colour=0x0000ff)
+        else:
+            embed_default = discord.Embed(title='Команда default\nОшибка', description='Указанный фон не найден в библиотеке фонов!', colour=0xff0000)
+    else:
+        embed_default = discord.Embed(title='Команда default\nОшибка', description='Вы не указали обязательный аргумент!', colour=0xff0000)
+    await ctx.reply(embed=embed_default)
+    await log_reg('Run command: default', ctx.author.name)
+    
 #команды владельца
+@slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
+@client.command(aliases=['опрос'])
+async def poll(ctx, type_=None, question=None, *, variants=None):
+    for role in ctx.author.roles:
+        if role.id == 880424360400269394:
+            if type_ != None:
+                if question != None:
+                    if type_ == 'variants':
+                        if variants != None:
+                            answers = variants.split('|')
+                            if len(answers) <= 10 and len(answers) >= 2:
+                                numbers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']
+                                for i in range(len(answers)):
+                                    if i == 0:
+                                        answers_text = f'{numbers[0]} {answers[0]}'
+                                    else:
+                                        answers_text = f'{answers_text}\n{numbers[i]} {answers[i]}'
+                                embed_poll = discord.Embed(title = 'Команда poll', color=0x0000ff)
+                                embed_poll.add_field(name = question, value = answers_text)
+                                message = await ctx.reply(embed=embed_poll)
+                                for i in range(len(answers)):
+                                    await message.add_reaction(numbers[i])
+                                return
+                            else:
+                                embed_poll = discord.Embed(description = 'Вы можете добавить только от 2 до 10 вариантов ответа!', title = 'Команда poll\nОшибка', color=0xff0000)
+                        else:
+                            embed_poll = discord.Embed(description = 'Вы не указали обязательный аргумент!', title = 'Команда poll\nОшибка', color=0xff0000)
+                    elif type_ == 'check':
+                        numbers = ['✅', '❌']
+                        embed_poll = discord.Embed(title = 'Команда poll', description = f'**{question}**', color=0x0000ff)
+                        message = await ctx.reply(embed=embed_poll)
+                        for i in range(2):
+                            await message.add_reaction(numbers[i])
+                        return
+                    else:
+                        embed_poll = discord.Embed(description = 'Вы можете выбрать только "variants" иил "check"!', title = 'Команда poll\nОшибка', color=0xff0000)
+                else:
+                    embed_poll = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', title = 'Команда poll\nОшибка', color=0xff0000)
+            else:
+                embed_poll = discord.Embed(description = 'Вы не указали обязательный(-ые) аргумент(-ы)!', title = 'Команда poll\nОшибка', color=0xff0000)
+            break
+        else:
+            embed_poll = discord.Embed(description = 'Вы не имеете право на выполнение этой команды!', title = 'Команда poll\nОшибка', color=0xff0000)
+    await ctx.reply(embed=embed_poll)
+    await log_reg('Run command: poll', ctx.author.name)
+
 @slash.slash(name='prefix', description='Меняет префикс сервера', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='new_pref', description='Новый префикс', option_type=3, required=True)])
 @client.command(aliases=['pref', 'префикс', 'преф'])#----------------------------------------------только владелец
 async def prefix(ctx, new_pref=None):
@@ -525,8 +692,10 @@ async def new_year_congrats(ctx):
     await log_reg('Run command: new_year_congrats', ctx.author.name)
 
 @client.command()
-async def system(ctx, user: discord.Member):
-    await ctx.send(user.created_at)
+async def system(ctx):
+    embed_system = discord.Embed(title='Команда help\nИнформация о команде: system', color=0x0000ff)
+    embed_system.add_field(name='Что делает', value='Команда используется в целях тестирования функций этого бота. Обычно, она вызывает команду help, но иногда она печатает что-то другое')
+    await ctx.send(embed=embed_system)
     await log_reg('Run command: system', ctx.author.name)
 
 @slash.slash(name='clear', description='Чистит текстовый канал', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='total', description='Количество сообщений на чистку', option_type=4, required=False)])
@@ -545,11 +714,11 @@ async def clear(ctx, total=10):
             color = 0x0000ff
             break
         else:
-            kick_text = 'Вы не имеете право на выполнение этой команды!'
-            title = 'Команда ban\nОшибка'
+            clear_text = 'Вы не имеете право на выполнение этой команды!'
+            title = 'Команда clear\nОшибка'
             color = 0xff0000
     embed_clear = discord.Embed(title=title, description=clear_text, colour=color)
-    await ctx.reply(embed=embed_clear)
+    await ctx.send(embed=embed_clear)
     await log_reg('Run command: clear', ctx.author.name)
 
 @slash.slash(name='kick', description='Кикает участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='member', description='Участник на кик', option_type=6, required=True), create_option(name='reason', description='Причина кика', option_type=3, required=False)])
@@ -656,45 +825,48 @@ async def xp(ctx, member:discord.Member=None, type_do=None, amount=None):
     for role in ctx.author.roles:
         if role.id == 880424360400269394:
             if member != None:
-                if type_do != None:
-                    if amount != None:
-                        if str(amount).isdigit() == True:
-                            try:
-                                profile_picture = ctx.message.author.avatar_url
-                            except:
-                                member = slash_context(member)
-                                type_do = slash_context(type_do)
-                                amount = slash_context(amount)
-                            with open('users.json', 'r') as f:
-                                users = json.load(f)
-                            await update_data(users, member)
-                            if type_do == 'a':
-                                await add_experience(users, member, amount)
-                                type_do_rus = 'добавлено участнику'
-                                await log_reg('Run command: xp (add)', ctx.author.name)
-                            elif type_do == 's':
-                                del users[str(member.id)]
-                                users[str(member.id)] = amount
-                                type_do_rus = 'установлено участнику'
-                                await log_reg('Run command: xp (set)', ctx.author.name)
-                            elif type_do == 'r':
-                                users[str(member.id)] -= amount
-                                type_do_rus = 'удалено у участника'
-                                await log_reg('Run command: xp (remove)', ctx.author.name)
+                if member.bot == False:
+                    if type_do != None:
+                        if amount != None:
+                            if str(amount).isdigit() == True:
+                                try:
+                                    profile_picture = ctx.message.author.avatar_url
+                                except:
+                                    member = slash_context(member)
+                                    type_do = slash_context(type_do)
+                                    amount = slash_context(amount)
+                                with open('users.json', 'r') as f:
+                                    users = json.load(f)
+                                await update_data(users, member)
+                                if type_do == 'a':
+                                    await add_experience(users, member, amount)
+                                    type_do_rus = 'добавлено участнику'
+                                    await log_reg('Run command: xp (add)', ctx.author.name)
+                                elif type_do == 's':
+                                    del users[str(member.id)]
+                                    users[str(member.id)] = int(amount)
+                                    type_do_rus = 'установлено участнику'
+                                    await log_reg('Run command: xp (set)', ctx.author.name)
+                                elif type_do == 'r':
+                                    users[str(member.id)] -= amount
+                                    type_do_rus = 'удалено у участника'
+                                    await log_reg('Run command: xp (remove)', ctx.author.name)
+                                else:
+                                    embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Тип действия не найден!', colour = 0xff0000)
+                                    await ctx.reply(embed=embed_xp)
+                                    await log_reg('Run command: xp (xp)', ctx.author.name)
+                                    return
+                                with open('users.json', 'w') as f:
+                                    json.dump(users, f)
+                                embed_xp = discord.Embed(title = 'Команда xp', description = f'Успешно было {type_do_rus} {amount} xp.', colour = 0x0000ff)
                             else:
-                                embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Тип действия не найден!', colour = 0xff0000)
-                                await ctx.reply(embed=embed_xp)
-                                await log_reg('Run command: xp (xp)', ctx.author.name)
-                                return
-                            with open('users.json', 'w') as f:
-                                json.dump(users, f)
-                            embed_xp = discord.Embed(title = 'Команда xp', description = f'Успешно было {type_do_rus} {amount} xp.', colour = 0x0000ff)
+                                embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Вы должны указать аргумент числом!', colour = 0xff0000)
                         else:
-                            embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Вы должны указать аргумент числом!', colour = 0xff0000)
+                            embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Вы не указали обязательный(-ые) агрумент(-ы)!', colour = 0xff0000)
                     else:
                         embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Вы не указали обязательный(-ые) агрумент(-ы)!', colour = 0xff0000)
                 else:
-                    embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Вы не указали обязательный(-ые) агрумент(-ы)!', colour = 0xff0000)
+                    embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Невозможно выполнить команду с ботом!', colour = 0xff0000)
             else:
                 embed_xp = discord.Embed(title = 'Команда xp\nОшибка', description = 'Вы не указали обязательный(-ые) агрумент(-ы)!', colour = 0xff0000)
             break
@@ -704,10 +876,10 @@ async def xp(ctx, member:discord.Member=None, type_do=None, amount=None):
 #команды модерации
 @slash.slash(name='mute', description='Скрывает участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='member', description='Участник на скрытие', option_type=6, required=True), create_option(name='time_mute', description='Время мута', option_type=4, required=False), create_option(name='reason', description='Причина скрытия', option_type=3, required=False)])
 @client.command(aliases=['мут', 'скрыть', 'мьют'])#------------------------------------------------только модеративные личности сервера
-async def mute(ctx, member:discord.Member=None, time_mute=10, *, reason=None):#команда
-    for role in ctx.author.roles:#перечисление ролей модератора
-        if role.id in moderation:#если роль модеративная...
-            if member != None:#если участник указан...
+async def mute(ctx, member=None, time_mute=10, *, reason=None):
+    for role in ctx.author.roles:
+        if role.id in moderation:
+            if member != None:
                 time_mute = str(time_mute)
                 if time_mute.isdigit() == True:
                     time_mute = int(time_mute)
@@ -727,6 +899,7 @@ async def mute(ctx, member:discord.Member=None, time_mute=10, *, reason=None):#�
                         mutes[str(member.id)]['roles'] = member_roles_names
                         mutes[str(member.id)]['time'] = end_of_mute
                         mutes[str(member.id)]['reason'] = reason
+                        mutes[str(member.id)]['minus_time'] = 0
                         member_roles_text = 'Роли участника на момент скрытия:'
                         for i in range(len(member.roles)):
                             member_roles_text = member_roles_text + '\n' + str(i+1) + '. ' + member_roles_names[i]
@@ -740,8 +913,7 @@ async def mute(ctx, member:discord.Member=None, time_mute=10, *, reason=None):#�
                             mute_text = member.mention + ' был успешно скрыт по причине **"' + reason + '"** на **' + str(time_mute) + time_mute_minutes + member_roles_text
                         else:
                             mute_text = member.mention + ' был успешно скрыт без причины на **' + str(time_mute) + time_mute_minutes + member_roles_text
-                        title = 'Команда mute'
-                        color = 0x0000ff
+                        embed_mute = discord.Embed(title = 'Команда mute', description=mute_text, color = 0x0000ff)
                         global channel_mute
                         channel = channel_mute
                         mute_role = discord.utils.get(ctx.guild.roles, name="Скрытый")
@@ -750,31 +922,42 @@ async def mute(ctx, member:discord.Member=None, time_mute=10, *, reason=None):#�
                         await member.edit(roles=[mute_role])
                         print(mutes)
                     else:
-                        mute_text = 'Время скрытия не должно превышать 3 суток (4320 минут)!'
-                        title = 'Команда mute\nОшибка'
-                        color = 0xff0000
+                        embed_mute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Время скрытия не должно превышать 3 суток (4320 минут)!', color = 0xff0000)
                         channel = ctx
                 else:
-                    mute_text = 'Время скрытия должно быть указано числом!'
-                    title = 'Команда mute\nОшибка'
-                    color = 0xff0000
+                    embed_mute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Время скрытия должно быть указано числом!', color = 0xff0000)
                     channel = ctx
             else:
-                mute_text = 'Вы не указали участника на скрытие!'
-                title = 'Команда mute\nОшибка'
-                color = 0xff0000
+                embed_mute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Вы не указали участника на скрытие!', color = 0xff0000)
                 channel = ctx
             break
         else:
-            mute_text = 'Вы не имеете право на выполнение этой команды!'
-            title = 'Команда mute\nОшибка'
-            color = 0xff0000
+            embed_mute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Вы не имеете право на выполнение этой команды!', color = 0xff0000)
             channel = ctx
-    embed_mute = discord.Embed(title = title, description = mute_text, colour = color)
     mute_message = await channel.send(embed=embed_mute)
     await log_reg('Run command: mute', ctx.author.name)
     if channel == channel_mute:
-        embed_mute2 = discord.Embed(title = title, description = mute_text + '\nВ канал <#888561763182845962> написано сообщение.', colour = color)
+        embed_mute2 = discord.Embed(title = 'Команда mute', description = mute_text + '\nВ канал <#888561763182845962> написано сообщение.', colour = 0x0000ff)
         await ctx.send(embed=embed_mute2)
+
+@slash.slash(name='unmute', description='Расскрывает участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='member', description='Участник на расскрытие', option_type=6, required=True)])
+@client.command(aliases=['размут', 'расскрыть', 'размьют'])#---------------------------------------только модеративные личности сервера
+async def unmute(ctx, member:discord.Member=None):
+    try:
+        profile_picture = ctx.message.author.avatar_url
+    except:
+        member = slash_context(member)
+    for role in ctx.author.roles:
+        if role.id in moderation:
+            if member != None:
+                if member in mutes:
+                    embed_unmute = discord.Embed(title = 'Команда unmute', description = member.mention + ' был преждевременно расскрыт.', colour = 0xff0000)
+            else:
+                embed_unmute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Вы не указали участника на расскрытие!', color = 0xff0000)
+            break
+        else:
+            embed_unmute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Вы не имеете право на выполнение этой команды!', color = 0xff0000)
+    await ctx.send(embed=embed_unmute)
+    await log_reg('Run command: unmute', ctx.author.name)
 #запуск
-client.run('ODg4NDc4MzIxNjU3MTM5MjIw.YUTR6w.PuOnMe2BZGnFvTek2aJPA7IkNH8')
+client.run('ODg4NDc4MzIxNjU3MTM5MjIw.YUTR6w.fzISeaur8zxCy9W4YHeMN2SnzdU')
