@@ -117,26 +117,21 @@ async def on_ready():
 
 @client.event
 async def on_raw_reaction_add(payload):
-    global mail_messsage
     if mail_message != None:
-        channel = client.get_channel(payload.channel_id)
-        message = await channel.fetch_message(payload.message_id)
-        guild = client.get_guild(payload.guild_id)
-        reaction = discord.utils.get(message.reactions, emoji=payload.emoji.name)
-        if payload.member.id == client.user.id:
-            return
-        if message == mail_message and reaction.emoji == '1️⃣':
-            role = discord.utils.get(guild.roles, id=929538033705967706)
-        elif message == mail_message and reaction.emoji == '2️⃣':
-            role = discord.utils.get(guild.roles, id=934881881093189742)
-        elif message == mail_message and reaction.emoji == '3️⃣':
-            role = discord.utils.get(guild.roles, id=929537987669266462)
-        else:
-            return
-        await payload.member.add_roles(role)
-        await reaction.remove(payload.member)
-    else:
-        print('Шо-то не так')
+        if (payload.message_id == mail_message) and (payload.user_id != client.user.id):
+            message = await client.get_channel(payload.channel_id).fetch_message(payload.message_id)
+            guild = client.get_guild(payload.guild_id)
+            reaction = discord.utils.get(message.reactions, emoji=payload.emoji.name)
+            if message == mail_message and reaction.emoji == '1️⃣':
+                role = discord.utils.get(guild.roles, id=929538033705967706)
+            elif message == mail_message and reaction.emoji == '2️⃣':
+                role = discord.utils.get(guild.roles, id=934881881093189742)
+            elif message == mail_message and reaction.emoji == '3️⃣':
+                role = discord.utils.get(guild.roles, id=929537987669266462)
+            else:
+                return
+            await payload.member.add_roles(role)
+            await reaction.remove(payload.member)
 
 @client.event
 async def on_member_join(member):
