@@ -366,7 +366,7 @@ async def random(ctx, type_=None, arg1=None, arg2=None):
 @client.command(aliases=['bot-info', 'бот', 'бот-инфо'])
 async def bot(ctx):
     global prefix
-    embed_bot = discord.Embed(title='Команда bot', description='Бот: JunFun Bot.\nЯзык программирования: python.\nИспользуемая библиотека: discord.py.\nПрефикс бота: ' + prefix_cr + '.\nАвтор и кодер бота: Janone#2404.\nДата начала разработки и выпуска первой версии: <t:1636322933>\nДата регистрации: <t:1631900139>\nДата релиза: <t:1643574600>\nТекущая версия: ' + bot_version + '\nБот был сделан специально и исключительно для сервера JunFun. Использование бота на других серверах запрещено без разрешения владельца проекта! Исходный код закрыт!', colour = 0x0000ff)
+    embed_bot = discord.Embed(title='Команда bot', description='Бот: JunFun Bot.\nЯзык программирования: python.\nИспользуемая библиотека: discord.py.\nПрефикс бота: ' + prefix_cr + '.\nАвтор и кодер бота: Janone#2404.\nДата начала разработки и выпуска первой версии: <t:1636322933>\nДата регистрации: <t:1631900139>\nДата релиза: <t:1643574600>\nДата поставки на хостинг Heroku: <t:1644701087>\nТекущая версия: ' + bot_version + '\nБот был сделан специально и исключительно для сервера JunFun. Использование бота на других серверах запрещено без разрешения владельца проекта! Исходный код закрыт!', colour = 0x0000ff)
     embed_bot.set_footer(text='<@840232854066954271> (Janone©) | 2022 Все права защищены | JunFun Bot©')
     await ctx.reply(embed=embed_bot)
     await log_reg('Run command: bot', ctx.author.name)
