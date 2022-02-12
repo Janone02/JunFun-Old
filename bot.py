@@ -3,6 +3,7 @@
 import discord
 from discord import role, utils
 from discord.ext import commands, tasks
+from discord_components import DiscordComponents, Button, ButtonStyle
 from asyncio import sleep
 from random import randint, uniform
 from PIL import Image, ImageFont, ImageDraw
@@ -99,6 +100,18 @@ async def log_reg(log_text, type_log):
     log_content = f'[{time_string}][{type_log}] {log_text}\n'
     with open('logs.txt', 'a') as file:
         file.write(log_content)
+
+@client.event
+async def on_button_click(interaction):
+    buttons = {'mail1':929538033705967706}
+    try:
+        role_id = buttons[interaction.component.label]
+    except:
+        return
+    if interaction.guild.get_role(role_id) in interaction.author.roles:
+        interaction.author.remove_role(interaction.guild.get_role(role_id))
+    else:
+        interaction.author.add_role(interaction.guild.get_role(role_id))
 
 @client.event
 async def on_ready():
@@ -607,7 +620,11 @@ async def default(ctx, background=None):
         embed_default = discord.Embed(title='Команда default\nОшибка', description='Вы не указали обязательный аргумент!', colour=0xff0000)
     await ctx.reply(embed=embed_default)
     await log_reg('Run command: default', ctx.author.name)
-    
+
+@slash.slash(name='mailing', description='Список рассылок', guild_ids=[847106317356630049, 934526675373420654], options=[])
+@client.command(aliases=['рассылки'])
+async def mailings(ctx):
+    ctx.reply(embed=discord.Embed(title='Команда mailings', decription='Кнопками внизу можно подписаться или отписаться от выбранной рассылки.', colour=0x0000ff), components=[Button(style=ButtonStyle.blue, label='mail1'), Button(style=ButtonStyle.blue, label='mail2'), Button(style=ButtonStyle.blue, label='mail3')])
 #команды владельца
 @slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
 @client.command(aliases=['опрос'])
