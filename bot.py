@@ -635,7 +635,7 @@ async def default(ctx, background=None):
 @client.command(aliases=['рассылки'])
 async def mailings(ctx):
     global mail_message
-    mail_message = await ctx.reply(embed=discord.Embed(title='Команда mailings', decription='Реакциями можно подписаться или отписаться от выбранной рассылки.\n1️⃣ - JunFun Bot.\n2️⃣ - Вход-выход-буст\n3️⃣ - Новости ботов', colour=0x0000ff))
+    mail_message = await ctx.reply(embed=discord.Embed(title='Команда mailings', description='Реакциями можно подписаться или отписаться от выбранной рассылки.\n1️⃣ - JunFun Bot.\n2️⃣ - Вход-выход-буст\n3️⃣ - Новости ботов', colour=0x0000ff))
     await mail_message.add_reaction('1️⃣')
     await mail_message.add_reaction('2️⃣')
     await mail_message.add_reaction('3️⃣')
