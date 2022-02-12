@@ -49,6 +49,7 @@ channel_mute = None
 mute_message = None
 mute_text = None
 mute_role = None
+mail_message = None
 
 with open('mutes.json') as mute:
     mutes = json.load(mute)
@@ -94,18 +95,6 @@ async def unmute_time():
                 await log_reg('Run command: unmute_time', 'Bot')
         await sleep(1)
 
-@client.event
-async def on_button_click(interaction):
-    buttons = {'mail1':929538033705967706}
-    try:
-        role_id = buttons[interaction.component.label]
-    except:
-        return
-    if interaction.guild.get_role(role_id) in interaction.author.roles:
-        interaction.author.remove_role(interaction.guild.get_role(role_id))
-    else:
-        interaction.author.add_role(interaction.guild.get_role(role_id))
-
 async def log_reg(log_text, type_log):
     local_time_ = time.localtime()
     time_string = time.strftime("%m.%d.%Y / %H:%M:%S", local_time_)
@@ -125,6 +114,27 @@ async def on_ready():
     mute_role = discord.utils.get(guild.roles, name="Скрытый")
     client1.loop.create_task(unmute_time())
     await log_reg('Bot succesfully started', 'Bot')
+
+@client.event
+async def on_raw_reaction_add(payload):
+    global mail_messsage
+    if mail_message != None:
+        channel = client.get_channel(payload.channel_id)
+        message = await channel.fetch_message(payload.message_id)
+        guild = client.get_guild(payload.guild_id)
+        reaction = discord.utils.get(message.reactions, emoji=payload.emoji.name)
+        if payload.member.id == client.user.id:
+            return
+        if message == mail_message and reaction.emoji == '1️⃣':
+            role = discord.utils.get(guild.roles, id=929538033705967706)
+        elif message == mail_message and reaction.emoji == '2️⃣':
+            role = discord.utils.get(guild.roles, id=934881881093189742)
+        elif message == mail_message and reaction.emoji == '3️⃣':
+            role = discord.utils.get(guild.roles, id=929537987669266462)
+        else:
+            return
+        await payload.member.add_roles(role)
+        await reaction.remove(payload.member)
 
 @client.event
 async def on_member_join(member):
@@ -621,10 +631,14 @@ async def default(ctx, background=None):
     await ctx.reply(embed=embed_default)
     await log_reg('Run command: default', ctx.author.name)
 
-@slash.slash(name='mailing', description='Список рассылок', guild_ids=[847106317356630049, 934526675373420654], options=[])
+@slash.slash(name='mailings', description='Список рассылок', guild_ids=[847106317356630049, 934526675373420654], options=[])
 @client.command(aliases=['рассылки'])
 async def mailings(ctx):
-    ctx.reply(embed=discord.Embed(title='Команда mailings', decription='Кнопками внизу можно подписаться или отписаться от выбранной рассылки.', colour=0x0000ff), components=[Button(style=ButtonStyle.blue, label='mail1'), Button(style=ButtonStyle.blue, label='mail2'), Button(style=ButtonStyle.blue, label='mail3')])
+    global mail_message
+    mail_message = await ctx.reply(embed=discord.Embed(title='Команда mailings', decription='Реакциями можно подписаться или отписаться от выбранной рассылки.\n1️⃣ - JunFun Bot.\n2️⃣ - Вход-выход-буст\n3️⃣ - Новости ботов', colour=0x0000ff))
+    await mail_message.add_reaction('1️⃣')
+    await mail_message.add_reaction('2️⃣')
+    await mail_message.add_reaction('3️⃣')
 #команды владельца
 @slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
 @client.command(aliases=['опрос'])
