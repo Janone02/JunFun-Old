@@ -422,3 +422,4 @@
 [02.12.2022 / 23:12:55][Janone] Run command: help
 [02.12.2022 / 23:13:17][Janone] Run command: bot
 [02.12.2022 / 23:37:28][Bot] Bot succesfully started
+[02.12.2022 / 23:47:11][Janone] Run command: help
