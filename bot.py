@@ -114,7 +114,7 @@ async def on_ready():
     mute_role = discord.utils.get(guild.roles, name="Скрытый")
     client1.loop.create_task(unmute_time())
     await log_reg('Bot succesfully started', 'Bot')
-
+'''
 @client.event
 async def on_raw_reaction_add(payload):
     if mail_message != None:
@@ -132,7 +132,7 @@ async def on_raw_reaction_add(payload):
                 return
             await payload.member.add_roles(role)
             await reaction.remove(payload.member)
-
+'''
 @client.event
 async def on_member_join(member):
     if member.bot == False:
@@ -627,7 +627,7 @@ async def default(ctx, background=None):
         embed_default = discord.Embed(title='Команда default\nОшибка', description='Вы не указали обязательный аргумент!', colour=0xff0000)
     await ctx.reply(embed=embed_default)
     await log_reg('Run command: default', ctx.author.name)
-
+'''
 @slash.slash(name='mailings', description='Список рассылок', guild_ids=[847106317356630049, 934526675373420654], options=[])
 @client.command(aliases=['рассылки'])
 async def mailings(ctx):
@@ -636,6 +636,7 @@ async def mailings(ctx):
     await mail_message.add_reaction('1️⃣')
     await mail_message.add_reaction('2️⃣')
     await mail_message.add_reaction('3️⃣')
+'''
 #команды владельца
 @slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
 @client.command(aliases=['опрос'])
