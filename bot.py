@@ -15,10 +15,16 @@ import os
 import requests
 import io
 import sys
+import psycopg2
 #подготовка переменных и функций
 print('Code successfully started.')
 print('Bot starting now.')
 
+conn = psycopg2.connect("""dbname=dao9gbdasr1l6e host=ec2-52-208-221-89.eu-west-1.compute.amazonaws.com port=5432 user=amqvqklajtuffc password=fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71 sslmode=require""")
+cursor = conn.cursor()
+query = """CREATE TABLE users
+(id serial NOT NULL PRIMARY KEY, first_name varchar NOT NULL, last_name varchar NOT NULL)
+"""
 allowed_mentions = discord.AllowedMentions(everyone = True)
 with open('prefix.txt') as prefix:
     prefix_cr = str(prefix.read())
