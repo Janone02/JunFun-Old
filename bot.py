@@ -655,6 +655,7 @@ async def mailings(ctx):
 @slash.slash(name='donate', description='Поддержка проекта', guild_ids=[847106317356630049, 934526675373420654], options=[])
 @client.command(aliases='донат')
 async def donate(ctx):
+    await ctx.reply(embed=discord.Embed(title='Команда donate', description='Если вы хотите поддержать проект монеткой нажмите [сюда](https://www.donationalerts.com/r/janone02).', colour = 0x0000ff))
 #команды владельца
 @slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
 @client.command(aliases=['опрос'])
