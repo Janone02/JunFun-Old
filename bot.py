@@ -653,7 +653,7 @@ async def mailings(ctx):
     await mail_message.add_reaction('3️⃣')
 '''
 @slash.slash(name='donate', description='Поддержка проекта', guild_ids=[847106317356630049, 934526675373420654], options=[])
-@client.command(aliases='донат')
+@client.command(aliases=['донат'])
 async def donate(ctx):
     await ctx.reply(embed=discord.Embed(title='Команда donate', description='Если вы хотите поддержать проект монеткой нажмите [сюда](https://www.donationalerts.com/r/janone02).', colour = 0x0000ff))
 #команды владельца
