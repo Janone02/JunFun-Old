@@ -20,11 +20,20 @@ import psycopg2
 print('Code successfully started.')
 print('Bot starting now.')
 
-conn = psycopg2.connect("""dbname=dao9gbdasr1l6e host=ec2-52-208-221-89.eu-west-1.compute.amazonaws.com port=5432 user=amqvqklajtuffc password=fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71 sslmode=require""")
-cursor = conn.cursor()
-query = """CREATE TABLE users
-(id serial NOT NULL PRIMARY KEY, first_name varchar NOT NULL, last_name varchar NOT NULL)
-"""
+try:
+    connection = psycopg2.connect(dbname='dao9gbdasr1l6e', host='ec2-52-208-221-89.eu-west-1.compute.amazonaws.com', user='amqvqklajtuffc', password='fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71')
+    connection.autocommit = True
+    cursor = connection.cursor()
+    cursor.execute('SELECT version();')
+    print(f'Версия сервера: {cursor.fetchone()}')
+    cursor.execute('''CREATE TABLE users(id serial PRIMARY KEY)''')
+except Exception as _ex:
+    print('[База данных] Ошибка', _ex)
+finally:
+    if connection:
+        cursor.close()
+        connection.close()
+        print('[База данных] Соединение закрыто')
 allowed_mentions = discord.AllowedMentions(everyone = True)
 with open('prefix.txt') as prefix:
     prefix_cr = str(prefix.read())
@@ -643,6 +652,9 @@ async def mailings(ctx):
     await mail_message.add_reaction('2️⃣')
     await mail_message.add_reaction('3️⃣')
 '''
+@slash.slash(name='donate', description='Поддержка проекта', guild_ids=[847106317356630049, 934526675373420654], options=[])
+@client.command(aliases='донат')
+async def donate(ctx):
 #команды владельца
 @slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
 @client.command(aliases=['опрос'])
