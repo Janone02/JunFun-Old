@@ -20,20 +20,11 @@ import psycopg2
 print('Code successfully started.')
 print('Bot starting now.')
 
-try:
-    connection = psycopg2.connect(dbname='dao9gbdasr1l6e', host='ec2-52-208-221-89.eu-west-1.compute.amazonaws.com', user='amqvqklajtuffc', password='fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71')
-    connection.autocommit = True
-    cursor = connection.cursor()
-    cursor.execute('SELECT version();')
-    print(f'Версия сервера: {cursor.fetchone()}')
-    cursor.execute('''CREATE TABLE users(id serial PRIMARY KEY)''')
-except Exception as _ex:
-    print('[База данных] Ошибка', _ex)
-finally:
-    if connection:
-        cursor.close()
-        connection.close()
-        print('[База данных] Соединение закрыто')
+connection = psycopg2.connect(dbname='dao9gbdasr1l6e', host='ec2-52-208-221-89.eu-west-1.compute.amazonaws.com', user='amqvqklajtuffc', password='fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71')
+connection.autocommit = True
+cursor = connection.cursor()
+cursor.execute('''CREATE TABLE users(id serial PRIMARY KEY, xp serial PRIMARY KEY, background varchar())''')
+
 allowed_mentions = discord.AllowedMentions(everyone = True)
 with open('prefix.txt') as prefix:
     prefix_cr = str(prefix.read())
