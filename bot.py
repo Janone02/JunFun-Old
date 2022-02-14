@@ -23,7 +23,8 @@ print('Bot starting now.')
 connection = psycopg2.connect(dbname='dao9gbdasr1l6e', host='ec2-52-208-221-89.eu-west-1.compute.amazonaws.com', user='amqvqklajtuffc', password='fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71')
 connection.autocommit = True
 cursor = connection.cursor()
-cursor.execute('''CREATE TABLE users(id serial PRIMARY KEY, xp serial PRIMARY KEY, background varchar PRIMARY KEY)''')
+cursor.execute('''DROP TABLE users''')
+cursor.execute('''CREATE TABLE users(id serial NOT NULL, xp serial NOT NULL, background varchar NOT NULL)''')
 
 allowed_mentions = discord.AllowedMentions(everyone = True)
 with open('prefix.txt') as prefix:
