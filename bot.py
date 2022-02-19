@@ -909,7 +909,7 @@ async def xp(ctx, member:discord.Member=None, type_do=None, amount=None):
 #команды модерации
 @slash.slash(name='mute', description='Скрывает участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='member', description='Участник на скрытие', option_type=6, required=True), create_option(name='time_mute', description='Время мута', option_type=4, required=False), create_option(name='reason', description='Причина скрытия', option_type=3, required=False)])
 @client.command(aliases=['мут', 'скрыть', 'мьют'])#------------------------------------------------только модеративные личности сервера
-async def mute(ctx, member=None, time_mute=10, *, reason=None):
+async def mute(ctx, member: discord.Member=None, time_mute=10, *, reason=None):
     for role in ctx.author.roles:
         if role.id in moderation:
             if member != None:
@@ -924,7 +924,6 @@ async def mute(ctx, member=None, time_mute=10, *, reason=None):
                             time_mute = slash_context(time_mute)
                             if reason != None:
                                 reason = slash_context(reason)
-                        member = discord_member(member)
                         global mutes
                         global mute_message
                         end_of_mute = int(time.time()) + int(time_mute * 60)
