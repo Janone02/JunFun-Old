@@ -924,6 +924,7 @@ async def mute(ctx, member=None, time_mute=10, *, reason=None):
                             time_mute = slash_context(time_mute)
                             if reason != None:
                                 reason = slash_context(reason)
+                        member = discord_member(member)
                         global mutes
                         global mute_message
                         end_of_mute = int(time.time()) + int(time_mute * 60)
