@@ -23,8 +23,6 @@ print('Bot starting now.')
 connection = psycopg2.connect(dbname='dao9gbdasr1l6e', host='ec2-52-208-221-89.eu-west-1.compute.amazonaws.com', user='amqvqklajtuffc', password='fbce88ef62f0dd52c9f22e77879911bff539e48fe71ed3584b13af94c9704e71')
 connection.autocommit = True
 cursor = connection.cursor()
-cursor.execute('''DROP TABLE users''')
-cursor.execute('''CREATE TABLE users(id serial NOT NULL, xp serial NOT NULL, background varchar NOT NULL)''')
 
 allowed_mentions = discord.AllowedMentions(everyone = True)
 with open('prefix.txt') as prefix:
@@ -58,9 +56,6 @@ mute_text = None
 mute_role = None
 mail_message = None
 
-with open('mutes.json') as mute:
-    mutes = json.load(mute)
-
 with open('bot_version.txt') as version_last:
     bot_version_last = int(version_last.read())
 with open('bot_version.txt', 'w') as version_last:
@@ -82,23 +77,22 @@ async def add_experience(users, user_, exp):
 
 async def unmute_time():
     while True:
-        global mutes
+        cursor.execute('''SELECT * FROM mutes''')
+        mutes = cursor.fetchall()
         for member in mutes:
             cr_time = time.time()
-            end_mute = float(mutes[member]['time']) - mutes[member]['minus_time']
+            end_mute = float(cursor.execute(f'''SELECT time FROM mutes WHERE user_mute = {member}'''))
             if cr_time >= end_mute:
                 global guild
                 global mute_role
-                member_roles = mutes[member]['roles']
+                member_roles = cursor.execute(f'''SELECT roles FROM mutes WHERE user_mute = {member}''').split('jfbmssidbomgwisn')
                 member_u = discord.utils.get(guild.members, id=int(member))
                 await member_u.remove_roles(mute_role)
                 for role in member_roles:
                     if role != '@everyone':
                         role = discord.utils.get(guild.roles, name=role)
                         await member_u.add_roles(role)
-                del mutes[member]
-                with open('mutes.json', 'w') as mute:
-                    json.dump(mutes, mute)
+                cursor.execute(f'''DELETE FROM mutes WHERE user_mute = {member}''')
                 await log_reg('Run command: unmute_time', 'Bot')
         await sleep(1)
 
@@ -114,6 +108,8 @@ async def on_ready():
     global channel_mute
     global guild
     global mute_role
+    users = cursor.execute(f'''SELECT * FROM users''')
+    print(users)
     channel_mute = client.get_channel(888561763182845962)
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.streaming, name='-help | -bot', url='https://www.twitch.tv/janone02'))
     print('Bot successfully started.')
@@ -143,12 +139,9 @@ async def on_raw_reaction_add(payload):
 @client.event
 async def on_member_join(member):
     if member.bot == False:
-        with open('users.json', 'r') as f:
-            users = json.load(f)
+        users = cursor.execute(f'''SELECT * FROM users WHERE user_user = {member.id}''')
+        print(users)
         await update_data(users, member)
-        with open('users.json', 'w') as f:
-            json.dump(users, f)
-
 @client.event
 async def on_message(message):
     if message.author.bot == False:
@@ -934,12 +927,10 @@ async def mute(ctx, member=None, time_mute=10, *, reason=None):
                         global mutes
                         global mute_message
                         end_of_mute = int(time.time()) + int(time_mute * 60)
-                        member_roles_names = [roles_mute.name for roles_mute in member.roles]
-                        mutes[str(member.id)] = {}
-                        mutes[str(member.id)]['roles'] = member_roles_names
-                        mutes[str(member.id)]['time'] = end_of_mute
-                        mutes[str(member.id)]['reason'] = reason
-                        mutes[str(member.id)]['minus_time'] = 0
+                        member_roles_names = ''
+                        for roles_mute in member.roles:
+                            member_roles_names = member_roles_names + f'{roles_mute.name}jfbmssidbomgwisn'
+                        cursor.execute(f'''INSERT INTO mutes (user_mute, roles, time, reason) VALUES ({member.id}, {member_roles_names}, {end_of_mute}, {reason})''')
                         member_roles_text = 'Роли участника на момент скрытия:'
                         for i in range(len(member.roles)):
                             member_roles_text = member_roles_text + '\n' + str(i+1) + '. ' + member_roles_names[i]
@@ -957,10 +948,7 @@ async def mute(ctx, member=None, time_mute=10, *, reason=None):
                         global channel_mute
                         channel = channel_mute
                         mute_role = discord.utils.get(ctx.guild.roles, name="Скрытый")
-                        with open('mutes.json', 'w') as mute:
-                            json.dump(mutes, mute)
                         await member.edit(roles=[mute_role])
-                        print(mutes)
                     else:
                         embed_mute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Время скрытия не должно превышать 3 суток (4320 минут)!', color = 0xff0000)
                         channel = ctx
@@ -979,25 +967,5 @@ async def mute(ctx, member=None, time_mute=10, *, reason=None):
     if channel == channel_mute:
         embed_mute2 = discord.Embed(title = 'Команда mute', description = mute_text + '\nВ канал <#888561763182845962> написано сообщение.', colour = 0x0000ff)
         await ctx.send(embed=embed_mute2)
-
-@slash.slash(name='unmute', description='Расскрывает участника', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='member', description='Участник на расскрытие', option_type=6, required=True)])
-@client.command(aliases=['размут', 'расскрыть', 'размьют'])#---------------------------------------только модеративные личности сервера
-async def unmute(ctx, member:discord.Member=None):
-    try:
-        profile_picture = ctx.message.author.avatar_url
-    except:
-        member = slash_context(member)
-    for role in ctx.author.roles:
-        if role.id in moderation:
-            if member != None:
-                if member in mutes:
-                    embed_unmute = discord.Embed(title = 'Команда unmute', description = member.mention + ' был преждевременно расскрыт.', colour = 0xff0000)
-            else:
-                embed_unmute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Вы не указали участника на расскрытие!', color = 0xff0000)
-            break
-        else:
-            embed_unmute = discord.Embed(title = 'Команда mute\nОшибка', description = 'Вы не имеете право на выполнение этой команды!', color = 0xff0000)
-    await ctx.send(embed=embed_unmute)
-    await log_reg('Run command: unmute', ctx.author.name)
 #запуск
 client.run('ODg4NDc4MzIxNjU3MTM5MjIw.YUTR6w.fzISeaur8zxCy9W4YHeMN2SnzdU')
