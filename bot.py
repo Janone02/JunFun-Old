@@ -35,7 +35,7 @@ moderation = [880424360400269394, 891413249801748510, 888356594251890708, 895782
 
 english_commands = ['8ball', 'prefix', 'ping', 'bot', 'clear', 'kick', 'ban', 'unban', 'new_year_congrats', 'random', 'help', 'mute', 'user', 'server', 'xp', 'avatar', 'gamble', 'system', 'poll', 'default']
 russian_comands = ['пинг', 'префикс', 'бот', 'чистка', 'кик', 'бан', 'разбан', 'пнг', 'рандом', 'хелп', 'мут', 'юзер', 'сервер', 'аватар', 'азарт', 'опрос', 'стандарт']
-other_commands = ['pref', 'преф', 'ранд', 'rand', 'bot-info', 'бот-инфо', 'мьют', 'скрыть', 'серв', 'serv', 'юз', 'ава']
+other_commands = ['pref', 'преф', 'ранд', 'rand', 'bot-info', 'бот-инфо', 'мьют', 'скрыть', 'серв', 'serv', 'юз', 'ава', '? ']
 
 linf = {'8ball':None, 'ping':'пинг', 'prefix':'префикс, pref, преф', 'bot':'бот, bot-info, бот-инфо', 'clear':'чистка', 'kick':'кик', 'ban':'бан', 'unban':'разбан', 'new_year_congrats':'пнг', 'random':'рандом, rand, ранд', 'help':'хелп', 'mute':'мут, мьют, скрыть', 'user':'юзер, юз', 'server':'сервер, serv, серв', 'xp':None, 'avatar':'аватар, ава', 'gamble':'азарт', 'system':None, 'poll':'опрос', 'default':'стандарт'}
 largs = {'8ball':'<вопрос>', 'ping':None, 'prefix':'<new_pref>', 'bot':None, 'clear':'<total>', 'kick':'<member>, <reason>', 'ban':'<member>, <reason>', 'unban':'<member>', 'new_year_congrats':None, 'random':'<type_>, <arg1>, <arg2>', 'help':'<команда>', 'mute':'<member>, <time_mute>, <reason>', 'user':'<user_m>, <background>', 'server':None, 'xp':'<member>, <type_do>, <amount>', 'avatar':'<avatar_own>', 'gamble':'<type_>, <arg1>, <arg2>', 'system':None, 'poll':'<type_>, <question>, <variants>', 'default':'<background>'}
@@ -159,7 +159,7 @@ async def on_message(message):
     await client.process_commands(message)
 #команды
 @slash.slash(name='help', description='Cписок команд сервера или подробная информация об 1 команде', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='command', description='Команда, о которой будет напечатана информация', required=False, option_type=3, choices=command_choices)])
-@client.command(aliases=['help', 'хелп'])
+@client.command(aliases=['help', 'хелп', '?'])
 async def help_(ctx, command=None):
     try:
         profile_picture = ctx.message.author.avatar_url
