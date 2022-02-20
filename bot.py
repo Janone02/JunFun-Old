@@ -924,11 +924,12 @@ async def mute(ctx, member: discord.Member=None, time_mute=10, *, reason=None):
                             time_mute = slash_context(time_mute)
                             if reason != None:
                                 reason = slash_context(reason)
-                        global mutes
                         global mute_message
                         end_of_mute = int(time.time()) + int(time_mute * 60)
                         member_roles_names = ''
                         for roles_mute in member.roles:
+                            if roles_mute == '@\u200beveryone':
+                                continue
                             member_roles_names = member_roles_names + f'{roles_mute.name}jfbmssidbomgwisn'
                         cursor.execute(f'''INSERT INTO mutes (user_mute, roles, time, reason) VALUES ({member.id}, {member_roles_names}, {end_of_mute}, {reason})''')
                         member_roles_text = 'Роли участника на момент скрытия:'
