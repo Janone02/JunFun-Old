@@ -108,8 +108,6 @@ async def on_ready():
     global channel_mute
     global guild
     global mute_role
-    users = cursor.execute(f'''SELECT * FROM users''')
-    print(users)
     channel_mute = client.get_channel(888561763182845962)
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.streaming, name='-help | -bot', url='https://www.twitch.tv/janone02'))
     print('Bot successfully started.')
@@ -641,6 +639,10 @@ async def mailings(ctx):
 @client.command(aliases=['донат'])
 async def donate(ctx):
     await ctx.reply(embed=discord.Embed(title='Команда donate', description='Если вы хотите поддержать проект монеткой нажмите [сюда](https://www.donationalerts.com/r/janone02).', colour = 0x0000ff))
+
+@client.command()
+async def avakada(ctx):
+    await ctx.reply('Авакада ЛАЛКА!!!!')
 #команды владельца
 @slash.slash(name='poll', description='Опрос', guild_ids=[847106317356630049, 934526675373420654], options=[create_option(name='type_', description='Тип опроса', option_type=3, required=True, choices=[create_choice(name='✅ и ❌', value='check'), create_choice(name='Варианты', value='variants')]), create_option(name='question', description='Вопрос (в кавычках если не через /)', option_type=3, required=True), create_option(name='variants', description='Варианты (обязателен при <type_> = Варианты)', option_type=3, required=False)])
 @client.command(aliases=['опрос'])
@@ -928,7 +930,7 @@ async def mute(ctx, member: discord.Member=None, time_mute=10, *, reason=None):
                         end_of_mute = int(time.time()) + int(time_mute * 60)
                         member_roles_names = ''
                         for roles_mute in member.roles:
-                            if roles_mute == '@\u200beveryone':
+                            if roles_mute == '@\u200beveryone' or roles_mute == '​​@​everyone':
                                 continue
                             member_roles_names = member_roles_names + f'{roles_mute.name}jfbmssidbomgwisn'
                         cursor.execute(f'''INSERT INTO mutes (user_mute, roles, time, reason) VALUES ({member.id}, {member_roles_names}, {end_of_mute}, {reason})''')
