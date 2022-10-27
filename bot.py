@@ -971,4 +971,4 @@ async def mute(ctx, member: discord.Member=None, time_mute=10, *, reason=None):
         embed_mute2 = discord.Embed(title = 'Команда mute', description = mute_text + '\nВ канал <#888561763182845962> написано сообщение.', colour = 0x0000ff)
         await ctx.send(embed=embed_mute2)
 #запуск
-client.run('ODg4NDc4MzIxNjU3MTM5MjIw.YUTR6w.fzISeaur8zxCy9W4YHeMN2SnzdU')
+client.run(::TOKEN::)
